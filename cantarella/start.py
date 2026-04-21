@@ -36,9 +36,9 @@ REACTIONS = [
 ]
 
 
-dev_text = "👨‍💻 Mind Behind This Bot:\n• @DmOwner\n• @akaza7902"
+dev_text = "👨‍💻 Mind Behind This Bot:\n• @tgH2R"
 expected_dev_hash = "b9e63b7578bdec13f3cb3162fe5f5e93dccaba3bfd5c8ddacbb90ffdcdcce402"
-channels_text = "📢 Official Channels:\n• @ReX_update\n• @THEUPDATEDGUYS\n\nStay updated for new features!"
+channels_text = "📢 Official Channels:\n• @tgH2R\n• @tgH2R\n\nStay updated for new features!"
 expected_channels_hash = "e19212e571bd0f6626450dd790029d392c0748c554d4b386a0c0752f4148d37d"
 
 if (
@@ -101,8 +101,8 @@ class script(object):
 • <b>3 Month Plan:</b> ₹120 / $2.5 (Save 20%)
 • <b>Lifetime Access:</b> ₹200 / $4 (One-Time Payment)
 <blockquote><b>👇 Secure Payment:</b></blockquote>
-<b>💸 UPI ID:</b> <code>{}</code>
-<b>📸 QR Code:</b> <a href='{}'>Scan to Pay</a>
+<b>💸 UPI ID:</b> <code>Q047210667@ybl</code>
+<b>📸 QR Code:</b> <a href='https://raw.githubusercontent.com/subhodas5673/SAVE-RESTRICT-BOT/refs/heads/master/assets/image/qr.jpg'>Scan to Pay</a>
 <i>After Payment: Send Screenshot to Admin for Instant Activation.</i>
 """
     PROGRESS_BAR = """\
