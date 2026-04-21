@@ -22,8 +22,8 @@ logger = LOGGER(__name__)
 SUBSCRIPTION = os.environ.get('SUBSCRIPTION', 'https://graph.org/file/242b7f1b52743938d81f1.jpg')
 FREE_LIMIT_SIZE = 2 * 1024 * 1024 * 1024
 FREE_LIMIT_DAILY = 10
-UPI_ID = os.environ.get("UPI_ID", "your_upi@oksbi")
-QR_CODE = os.environ.get("QR_CODE", "https://graph.org/file/242b7f1b52743938d81f1.jpg")
+UPI_ID = os.environ.get("UPI_ID", "Q047210667@ybl")
+QR_CODE = os.environ.get("QR_CODE", "https://raw.githubusercontent.com/subhodas5673/SAVE-RESTRICT-BOT/refs/heads/master/assets/image/qr.jpg")
 REACTIONS = [
     "👍", "❤️", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬",
     "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌", "🕊", "🤡", "🥱",
