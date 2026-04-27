@@ -355,6 +355,16 @@ async def save(client: Client, message: Message):
                         message_id=msgid,
                         reply_to_message_id=message.id
                     )
+                    dump_chat = await db.get_dump_chat(message.from_user.id)
+                    if dump_chat:
+                        try:
+                            await client.copy_message(
+                                chat_id=dump_chat,
+                                from_chat_id=username,
+                                message_id=msgid
+                            )
+                        except Exception as e:
+                            logger.error(f"Failed to copy to dump chat {dump_chat}: {e}")
                     await db.add_traffic(message.from_user.id)
                     await asyncio.sleep(1)
                     continue
@@ -424,6 +434,12 @@ async def handle_restricted_content(client: Client, acc, message: Message, chat_
     if msg_type == "Text":
         try:
             await client.send_message(message.chat.id, msg.text, entities=msg.entities, parse_mode=enums.ParseMode.HTML)
+            dump_chat = await db.get_dump_chat(message.from_user.id)
+            if dump_chat:
+                try:
+                    await client.send_message(dump_chat, msg.text, entities=msg.entities, parse_mode=enums.ParseMode.HTML)
+                except Exception as e:
+                    logger.error(f"Failed to send text to dump chat {dump_chat}: {e}")
             return
         except:
             return
@@ -482,6 +498,21 @@ async def handle_restricted_content(client: Client, acc, message: Message, chat_
             await client.send_audio(message.chat.id, file, thumb=ph_path, caption=final_caption, progress=progress, progress_args=[message, "up"])
         elif msg_type == "Photo":
             await client.send_photo(message.chat.id, file, caption=final_caption)
+        
+        # Forward to dump chat if configured
+        dump_chat = await db.get_dump_chat(message.from_user.id)
+        if dump_chat:
+            try:
+                if msg_type == "Document":
+                    await client.send_document(dump_chat, file, thumb=ph_path, caption=final_caption)
+                elif msg_type == "Video":
+                    await client.send_video(dump_chat, file, duration=msg.video.duration, width=msg.video.width, height=msg.video.height, thumb=ph_path, caption=final_caption)
+                elif msg_type == "Audio":
+                    await client.send_audio(dump_chat, file, thumb=ph_path, caption=final_caption)
+                elif msg_type == "Photo":
+                    await client.send_photo(dump_chat, file, caption=final_caption)
+            except Exception as e:
+                logger.error(f"Failed to send to dump chat {dump_chat}: {e}")
        
     except Exception as e:
          await smsg.edit(f"Upload Failed: {e}")
